@@ -1,7 +1,12 @@
 package com.javahand.ep1sode
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity()
 {
@@ -9,5 +14,15 @@ class MainActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        findViewById<TextView>( R.id.text_ep1sode_logo ).text =
+            SpannableString( getString( R.string.ep1sode )).apply {
+                setSpan(
+                    ForegroundColorSpan( Color.WHITE ),
+                    2,
+                    3,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                ) // setSpan
+            } // also
     }
 }
