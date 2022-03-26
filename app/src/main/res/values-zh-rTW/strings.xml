@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">第1集追起</string>
     <string name="app_title">第1集追起</string>
+    <string name="content_rating">內容級別</string>
 </resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item
+        android:drawable="@drawable/rating_00"
+        android:minLevel="0"
+        />
+
+    <item
+        android:drawable="@drawable/rating_06"
+        android:minLevel="6"
+        />
+
+    <item
+        android:drawable="@drawable/rating_12"
+        android:minLevel="12"
+        />
+
+    <item
+        android:drawable="@drawable/rating_15"
+        android:minLevel="15"
+        />
+
+    <item
+        android:drawable="@drawable/rating_18"
+        android:minLevel="18"
+        />
+</level-list>

@@ -2,4 +2,5 @@
     <string name="app_name">Ep1sode</string>
     <string name="ep1sode" translatable="false">Ep1sode</string>
     <string name="app_title">1st Episode</string>
+    <string name="content_rating">content rating</string>
 </resources>

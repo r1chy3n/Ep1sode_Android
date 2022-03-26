@@ -10,21 +10,19 @@ data class Ep1sodeEntity(
     val id: Long,
 
     @ColumnInfo(name="channel_number")
-    val channelNumber: Short,
+    val channelNumber: String,
 
     @ColumnInfo(name="channel_name")
     val channelName: String,
 
     val title: String,
-    val rating: String,
+    val rating: Int,
 
-    @ColumnInfo(name = "start_time")
-    val startTime: Long,
+    // 03/25五 20:00～21:00
+    @ColumnInfo(name = "broadcast_period")
+    val broadcastPeriod: String,
 
-    @ColumnInfo(name = "end_time")
-    val endTime: Long,
-
-    // "[Long]|[Long]|..."
-    @ColumnInfo(name = "replay_times")
-    val replayTimes: String = ""
+    // "26六 01:00、26六 10:00"
+    @ColumnInfo(name = "replay_periods")
+    val replayPeriods: String = ""
 ) // data class Ep1sodeEntity
