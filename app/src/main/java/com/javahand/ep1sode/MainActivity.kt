@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity()
             } // also
 
         // Ads
-        findViewById<AdView>( R.id.adview_main )
+        findViewById<AdView>( R.id.adview_banner_main )
             .loadAd( AdRequest.Builder().build())
     }
 }
