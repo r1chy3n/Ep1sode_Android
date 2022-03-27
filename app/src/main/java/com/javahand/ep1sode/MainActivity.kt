@@ -6,15 +6,22 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.javahand.ep1sode.viewmodel.MainViewModel
+import com.javahand.ep1sode.viewmodel.MainViewModelFactory
 
 class MainActivity : AppCompatActivity()
 {
+    private val mainViewModel: MainViewModel by viewModels {
+        MainViewModelFactory(( application as Ep1sodeApplication).repository )
+    } // by viewModels
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -34,14 +41,22 @@ class MainActivity : AppCompatActivity()
             } // also
 
         // list
-        findViewById<RecyclerView>(R.id.recycler_ep1sode).run {
+        val recyclerEp1sode = findViewById<RecyclerView>(R.id.recycler_ep1sode)
+        val ep1sodeAdapter = Ep1sodeAdapter()
 
-            adapter = Ep1sodeAdapter()
-            layoutManager = LinearLayoutManager( context )
-        } // run
+        recyclerEp1sode.adapter = ep1sodeAdapter
+        recyclerEp1sode.layoutManager = LinearLayoutManager( this )
 
         // Ads
         findViewById<AdView>(R.id.adview_banner_main)
             .loadAd(AdRequest.Builder().build())
+
+        mainViewModel.allEp1sodes.observe( this ) { ep1List ->
+
+            ep1List.let {
+
+                ep1sodeAdapter.submitList( it )
+            } // let
+        } // observe
     }
 }

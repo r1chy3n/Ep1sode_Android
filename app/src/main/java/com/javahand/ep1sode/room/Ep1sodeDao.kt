@@ -11,6 +11,6 @@ interface Ep1sodeDao
     @Insert
     suspend fun insert( ep1sodeEntity: Ep1sodeEntity )
 
-    @Query( "SELECT * FROM ep1sode_table ORDER BY start_time" )
+    @Query( "SELECT * FROM ep1sode_table ORDER BY broadcast_period" )
     fun getAllEp1sodes(): Flow<List<Ep1sodeEntity>>
 } // interface Ep1sodeDao
