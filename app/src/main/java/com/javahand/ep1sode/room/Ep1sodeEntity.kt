@@ -24,5 +24,5 @@ data class Ep1sodeEntity(
 
     // "26六 01:00、26六 10:00"
     @ColumnInfo(name = "replay_periods")
-    val replayPeriods: String = ""
+    var replayPeriods: String = ""
 ) // data class Ep1sodeEntity

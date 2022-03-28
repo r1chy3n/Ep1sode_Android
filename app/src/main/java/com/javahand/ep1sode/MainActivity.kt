@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -43,6 +44,8 @@ class MainActivity : AppCompatActivity()
         // list
         val recyclerEp1sode = findViewById<RecyclerView>(R.id.recycler_ep1sode)
         val ep1sodeAdapter = Ep1sodeAdapter()
+
+        ep1sodeAdapter.setHasStableIds( true )
 
         recyclerEp1sode.adapter = ep1sodeAdapter
         recyclerEp1sode.layoutManager = LinearLayoutManager( this )

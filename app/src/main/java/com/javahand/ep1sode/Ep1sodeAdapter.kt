@@ -14,7 +14,7 @@ class Ep1sodeAdapter :
     ListAdapter<Ep1sodeEntity, Ep1sodeAdapter.Ep1sodeViewHolder>(
         Ep1sodeDiffCallback
     )
-{
+{ // class Ep1sodeAdapter
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -27,6 +27,11 @@ class Ep1sodeAdapter :
     {
         holder.bind( getItem( position ))
     } // fun onBindViewHolder( Ep1sodeViewHolder, Int )
+
+    override fun getItemId(position: Int): Long
+    {
+        return getItem( position ).id
+    } // fun getItemId( Int )
 
     class Ep1sodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
@@ -68,4 +73,4 @@ class Ep1sodeAdapter :
             newItem: Ep1sodeEntity
         ) = oldItem.id == newItem.id
     } // object Ep1sodeDiffCallback
-} // class Ep1sodeAdapter
+}
