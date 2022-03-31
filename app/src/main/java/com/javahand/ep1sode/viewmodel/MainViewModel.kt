@@ -16,18 +16,16 @@ import java.util.*
 class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
 {
     private val yyyyMMdd = SimpleDateFormat("yyyyMMdd", Locale.TAIWAN)
+    private val yyyy_MM_dd = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
 
     val allEp1sodes: LiveData<List<Ep1sodeEntity>> =
         ep1Repo.allEp1sodes.asLiveData()
 
-    init
-    {
-        fetchFromKbro()
-    } // init
-
-    private fun fetchFromKbro()
+    fun fetchFromKbro()
     {
         viewModelScope.launch {
+
+            ep1Repo.deletePriorTo( yyyy_MM_dd.format( Date()))
 
             KbroRestful.retrofitService.getAllChannelList(
                 System.currentTimeMillis()
@@ -73,7 +71,7 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
                 }
                 else
                 {
-                    updateEp1sode( ep1sodes.first(), kbroProgram )
+                    updateEp1sode(ep1sodes.first(), kbroProgram)
                 } // if - else
             } // if
         } // forEach
@@ -84,18 +82,18 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
         kbroProgram: KbroProgram
     )
     {
-        val replayPeriod = kbroProgram.startTime.substring( 5, 16 )
+        val replayPeriod = kbroProgram.startTime.substring(5, 16)
 
-        if ( !ep1sodeEntity.replayPeriods.contains( replayPeriod ))
+        if (!ep1sodeEntity.replayPeriods.contains(replayPeriod))
         {
-            if ( ep1sodeEntity.replayPeriods.isNotEmpty())
+            if (ep1sodeEntity.replayPeriods.isNotEmpty())
             {
                 ep1sodeEntity.replayPeriods += " / "
             } // if
 
             ep1sodeEntity.replayPeriods += replayPeriod
 
-            ep1Repo.update( ep1sodeEntity )
+            ep1Repo.update(ep1sodeEntity)
         } // if
     } // fun updateEp1sode( KbroProgram, Ep1sodeEntity )
 

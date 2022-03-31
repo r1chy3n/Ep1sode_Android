@@ -23,4 +23,10 @@ interface Ep1sodeDao
         channelNumber: String,
         title: String
     ): List<Ep1sodeEntity>
+
+    @Query(
+        "DELETE from ep1sode_table WHERE "
+                + "SUBSTR( broadcast_period, 1, 10 )<:today"
+    )
+    suspend fun deletePrior2( today: String )
 } // interface Ep1sodeDao

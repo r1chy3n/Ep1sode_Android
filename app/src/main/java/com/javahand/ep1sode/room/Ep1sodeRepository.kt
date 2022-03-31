@@ -22,4 +22,10 @@ class Ep1sodeRepository(private val ep1sodeDao: Ep1sodeDao)
     @WorkerThread
     suspend fun getEp1sodes(channelNumber: String, programName: String) =
         ep1sodeDao.getEp1sodes(channelNumber, programName)
+
+    @WorkerThread
+    suspend fun deletePriorTo( today: String )
+    {
+        ep1sodeDao.deletePrior2( today )
+    } // deletePriorTo( String )
 } // class Ep1sodeRepository( Ep1sodeDao )
