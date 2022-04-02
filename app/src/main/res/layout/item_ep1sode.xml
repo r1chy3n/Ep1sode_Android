@@ -10,57 +10,127 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_ep1sode_background"
-        android:padding="12dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
         >
 
-        <TextView
-            android:id="@+id/text_channel_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/text_channel_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/text_channel_number"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
+        <!-- 內容級別 -->
         <ImageView
             android:id="@+id/image_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="1dp"
             android:src="@drawable/level_rating"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_channel_number"
+            app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/content_rating"
             />
 
+        <!-- 節目名稱 -->
         <TextView
             android:id="@+id/text_program_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:letterSpacing="0.08"
+            android:lines="1"
+            android:textColor="@color/white"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@id/image_rating"
-            app:layout_constraintTop_toBottomOf="@id/text_channel_name"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
+        <!-- 播放頻道：標題 -->
+        <TextView
+            android:id="@+id/text_caption_channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="播放頻道："
+            android:textColor="#FFF3D2"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_rating"
+            />
+
+        <!-- 頻道號 -->
+        <TextView
+            android:id="@+id/text_channel_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:textColor="#FFF3D2"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/text_caption_channel"
+            app:layout_constraintTop_toBottomOf="@id/image_rating"
+            />
+
+        <!-- 頻道名 -->
+        <TextView
+            android:id="@+id/text_channel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="14dp"
+            android:textColor="#FFF3D2"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/text_channel_number"
+            app:layout_constraintTop_toBottomOf="@id/image_rating"
+            />
+
+        <!-- 播出時段：標題 -->
+        <TextView
+            android:id="@+id/text_caption_broadcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="播出時段："
+            android:textColor="#FFE8A5"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_channel_number"
+            />
+
+        <!-- 播出時段：內容 -->
         <TextView
             android:id="@+id/text_broadcast_period"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_program_title"
+            android:layout_marginTop="6dp"
+            android:textColor="#FFE8A5"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/text_caption_broadcast"
+            app:layout_constraintTop_toBottomOf="@id/text_channel_number"
             />
 
+        <!-- 重播時間：標題 -->
         <TextView
-            android:id="@+id/text_replay_periods"
+            android:id="@+id/text_caption_replay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="重播時間："
+            android:textColor="#D79C9C"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_broadcast_period"
+            app:layout_constraintEnd_toStartOf="@id/text_replay_periods"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/text_caption_broadcast"
+            />
+
+        <!-- 重播時間：內容 -->
+        <TextView
+            android:id="@+id/text_replay_periods"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:textAlignment="viewStart"
+            android:textColor="#D79C9C"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/text_caption_replay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_caption_broadcast"
+            app:layout_constraintHorizontal_weight="1"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

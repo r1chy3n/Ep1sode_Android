@@ -15,6 +15,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.javahand.ep1sode.viewmodel.MainViewModel
 import com.javahand.ep1sode.viewmodel.MainViewModelFactory
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity()
 {

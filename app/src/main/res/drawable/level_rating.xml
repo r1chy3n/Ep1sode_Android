@@ -4,27 +4,27 @@
     >
 
     <item
+        android:maxLevel="5"
         android:drawable="@drawable/rating_00"
-        android:minLevel="0"
         />
 
     <item
+        android:maxLevel="11"
         android:drawable="@drawable/rating_06"
-        android:minLevel="6"
         />
 
     <item
+        android:maxLevel="14"
         android:drawable="@drawable/rating_12"
-        android:minLevel="12"
         />
 
     <item
+        android:maxLevel="17"
         android:drawable="@drawable/rating_15"
-        android:minLevel="15"
         />
 
     <item
+        android:maxLevel="19"
         android:drawable="@drawable/rating_18"
-        android:minLevel="18"
         />
 </level-list>
