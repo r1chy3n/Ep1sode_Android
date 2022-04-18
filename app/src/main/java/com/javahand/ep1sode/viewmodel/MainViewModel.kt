@@ -27,25 +27,26 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
 
             ep1Repo.deletePriorTo( yyyy_MM_dd.format( Date()))
 
-            val dateList = List(8) { dDay ->
-
-                yyyyMMdd.format(
-                    Calendar.getInstance().apply {
-
-                        add(Calendar.DATE, dDay)
-                    }.time
-                ) // format
-            } // List
-
             KbroRestful.retrofitService.getAllChannelList(
                 System.currentTimeMillis()
-            ).data.forEach { kbroChannel ->
+            ).data.let { kbroChannelList ->
 
-                dateList.forEach { date ->
+                val dateList = List(8) { dDay ->
 
-                    fetchProgram(date, kbroChannel)
+                    yyyyMMdd.format(
+                        Calendar.getInstance().apply {
 
-                    Thread.sleep( 100 )
+                            add(Calendar.DATE, dDay)
+                        }.time
+                    ) // format
+                }.forEach { date ->
+
+                    kbroChannelList.forEach { kbroChannel ->
+
+                        fetchProgram(date, kbroChannel)
+
+                        Thread.sleep( 50 )
+                    } // forEach
                 } // forEach
             } // forEach
         } // launch
