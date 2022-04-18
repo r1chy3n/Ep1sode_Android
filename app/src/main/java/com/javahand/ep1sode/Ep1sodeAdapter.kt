@@ -66,7 +66,7 @@ class Ep1sodeAdapter :
         override fun areItemsTheSame(
             oldItem: Ep1sodeEntity,
             newItem: Ep1sodeEntity
-        ) = oldItem === newItem
+        ) = oldItem == newItem
 
         override fun areContentsTheSame(
             oldItem: Ep1sodeEntity,
