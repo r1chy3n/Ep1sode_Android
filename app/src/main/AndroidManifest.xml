@@ -20,11 +20,11 @@
             </intent-filter>
         </activity>
 
-<!--        android:value="ca-app-pub-3940256099942544~3347511713"-->
-<!--        android:value="ca-app-pub-3770258136848101~9857685865"-->
+<!--    測試 ID    android:value="ca-app-pub-3940256099942544~3347511713"-->
+<!--    正式 ID    android:value="ca-app-pub-3770258136848101~9857685865"-->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3770258136848101~9857685865"
+            android:value="ca-app-pub-3940256099942544~3347511713"
             />
     </application>
 

@@ -47,13 +47,15 @@
         app:layout_constraintBottom_toTopOf="@id/adview_banner_main"
         />
 
+<!--   正式 ID ads:adUnitId="ca-app-pub-3770258136848101/3003630763"-->
+<!--   測試 ID ads:adUnitId="ca-app-pub-3940256099942544/6300978111"-->
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adview_banner_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-3770258136848101/3003630763"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
