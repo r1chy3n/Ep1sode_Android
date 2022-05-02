@@ -1,6 +1,5 @@
 package com.javahand.ep1sode.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.javahand.ep1sode.retrofit.KbroChannel
 import com.javahand.ep1sode.retrofit.KbroProgram
@@ -19,13 +18,13 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
     val allEp1sodes: LiveData<List<Ep1sodeEntity>> =
         ep1Repo.allEp1sodes.asLiveData()
 
-    val fetchingFinished = MutableLiveData( false )
+    val fetchingFinished = MutableLiveData(false)
 
     fun fetchFromKbro()
     {
         viewModelScope.launch {
 
-            ep1Repo.deletePriorTo( yyyy_MM_dd.format( Date()))
+            ep1Repo.deletePriorTo(yyyy_MM_dd.format(Date()))
 
             KbroRestful.retrofitService.getAllChannelList(
                 System.currentTimeMillis()
@@ -45,7 +44,7 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
 
                         fetchProgram(date, kbroChannel)
 
-                        Thread.sleep( 50 )
+                        Thread.sleep(50)
                     } // forEach
                 } // forEach
             } // let
@@ -86,9 +85,14 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
         kbroProgram: KbroProgram
     )
     {
+        // 2022-03-10 00:00:00
+        // 012__5__90123__16__
         val replayPeriod = kbroProgram.startTime.substring(5, 16)
+        val kbroStartTime = kbroProgram.startTime.substring( 0, 16 )
 
-        if (!ep1sodeEntity.replayPeriods.contains(replayPeriod))
+        if ( !ep1sodeEntity.broadcastPeriod.startsWith( kbroStartTime )
+            && !ep1sodeEntity.replayPeriods.contains(replayPeriod)
+        )
         {
             if (ep1sodeEntity.replayPeriods.isNotEmpty())
             {
@@ -106,6 +110,8 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
         kbroProgram: KbroProgram
     )
     {
+        // 2022-03-10 00:00:00
+        // 0__3456789012__16__
         val broadcastPeriod = kbroProgram.startTime.substring(0, 16) +
                 " ～ " + kbroProgram.endTime.substring(11, 16)
 
