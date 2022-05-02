@@ -15,11 +15,11 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.javahand.ep1sode.viewmodel.MainViewModel
 import com.javahand.ep1sode.viewmodel.MainViewModelFactory
-import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity()
 {
     private val KEY_LAST_FETCH = "LAST_FETCH"
+    private val KEY_FETCH_FINISH = "FETCH_FINISH"
     private val MILLIS_24_HOURS = 24L * 60 * 60 * 1000
 
     private val mainViewModel: MainViewModel by viewModels {
@@ -65,21 +65,34 @@ class MainActivity : AppCompatActivity()
                 ep1sodeAdapter.submitList(it)
             } // let
         } // observe
-    }
+
+        mainViewModel.fetchingFinished.observe(this) { finished ->
+
+            if (finished)
+            {
+                getPreferences(MODE_PRIVATE).edit()
+                    .putBoolean(KEY_FETCH_FINISH, true).apply()
+            } // if
+        } // observe
+    } // Fun onCreate( Bundle?)
 
     override fun onResume()
     {
         super.onResume()
 
         val sharedPrefs = getPreferences(MODE_PRIVATE)
+        val fetchingFinished = sharedPrefs.getBoolean(KEY_FETCH_FINISH, false)
         val lastFetchMillis = sharedPrefs.getLong(KEY_LAST_FETCH, 0)
 
-        if (lastFetchMillis + MILLIS_24_HOURS < System.currentTimeMillis())
+        if (!fetchingFinished
+            || lastFetchMillis + MILLIS_24_HOURS < System.currentTimeMillis()
+        )
         {
+            sharedPrefs.edit().putBoolean(KEY_FETCH_FINISH, false).apply()
             mainViewModel.fetchFromKbro()
         } // if
 
         sharedPrefs.edit()
-            .putLong( KEY_LAST_FETCH, System.currentTimeMillis()).apply()
+            .putLong(KEY_LAST_FETCH, System.currentTimeMillis()).apply()
     } // fun onResume()
 } // class MainActivity

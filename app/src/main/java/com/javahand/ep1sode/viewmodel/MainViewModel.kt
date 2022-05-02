@@ -1,9 +1,7 @@
 package com.javahand.ep1sode.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import com.javahand.ep1sode.retrofit.KbroChannel
 import com.javahand.ep1sode.retrofit.KbroProgram
 import com.javahand.ep1sode.retrofit.KbroRestful
@@ -20,6 +18,8 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
 
     val allEp1sodes: LiveData<List<Ep1sodeEntity>> =
         ep1Repo.allEp1sodes.asLiveData()
+
+    val fetchingFinished = MutableLiveData( false )
 
     fun fetchFromKbro()
     {
@@ -48,7 +48,9 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
                         Thread.sleep( 50 )
                     } // forEach
                 } // forEach
-            } // forEach
+            } // let
+
+            fetchingFinished.value = true
         } // launch
     } // fun fetchFromKbro()
 
