@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection", "PrivatePropertyName")
+
 package com.javahand.ep1sode.viewmodel
 
 import androidx.lifecycle.*
@@ -30,7 +32,7 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
                 System.currentTimeMillis()
             ).data.let { kbroChannelList ->
 
-                val dateList = List(8) { dDay ->
+                List(8) { dDay ->
 
                     yyyyMMdd.format(
                         Calendar.getInstance().apply {
@@ -127,7 +129,7 @@ class MainViewModel(private val ep1Repo: Ep1sodeRepository) : ViewModel()
         )
     } // fun insertEp1sode( KbroChannel, KbroProgram )
 
-    fun insert(ep1sodeEntity: Ep1sodeEntity) = viewModelScope.launch {
+    private fun insert(ep1sodeEntity: Ep1sodeEntity) = viewModelScope.launch {
 
         ep1Repo.insert(ep1sodeEntity)
     } // launch
